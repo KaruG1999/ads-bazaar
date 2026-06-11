@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StellarWalletButton } from "./stellar-wallet-button";
+import { OnboardingFlow } from "./onboarding-flow";
 
 const heroStats = [
   { value: "0.5%", label: "protocol fee" },
@@ -93,14 +93,16 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-2.5">
-            <StellarWalletButton />
+            <OnboardingFlow buttonLabel="Connect wallet" />
           </div>
         </nav>
 
         <div className="relative z-10 mx-auto grid max-w-[1230px] items-center gap-9 pt-14 lg:min-h-[calc(100svh-72px)] lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:gap-14 lg:pt-8">
           <div className="max-w-[610px] animate-enter-left">
             <p className={labelClass}>Stellar creator commerce</p>
-            <h1 className={`${displayFont} mb-6 max-w-[760px] text-[54px] leading-[0.94] sm:text-[64px] lg:text-[104px]`}>
+            <h1
+              className={`${displayFont} mb-6 max-w-[760px] text-[54px] leading-[0.94] sm:text-[64px] lg:text-[104px]`}
+            >
               Campaign escrow for the next million creators.
             </h1>
             <p className="max-w-xl text-[17px] leading-relaxed text-[rgba(247,248,242,0.74)]">
@@ -110,18 +112,19 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3.5 sm:flex-row lg:mb-19">
+              <OnboardingFlow buttonLabel="Get started" buttonSize="large" />
               <a
                 href="#how"
-                className="inline-flex min-h-13 items-center justify-center rounded-full bg-[linear-gradient(180deg,var(--lime),var(--lime-2))] px-7 py-4 text-[13px] font-black text-[#102014] shadow-[0_18px_40px_rgba(216,255,40,0.18)] transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--lime)]"
-              >
-                Open campaign
-              </a>
-              <a
-                href="#why"
                 className="inline-flex min-h-13 items-center gap-2.5 rounded-full bg-[var(--paper)] py-2 pl-2 pr-5 text-[13px] font-black text-[var(--ink)] transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--lime)]"
-                aria-label="Watch product walkthrough"
+                aria-label="See how AdsBazaar works"
               >
-                 Open campaign
+                <span
+                  className="flex size-9 items-center justify-center rounded-full bg-[#12262a] text-[11px] text-[var(--paper)]"
+                  aria-hidden="true"
+                >
+                  ↓
+                </span>
+                See flow
               </a>
             </div>
           </div>
@@ -196,10 +199,15 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="bg-[var(--paper)] px-4 py-20 text-[var(--ink)] sm:px-8 lg:px-20 lg:py-25" id="how">
+      <section
+        className="bg-[var(--paper)] px-4 py-20 text-[var(--ink)] sm:px-8 lg:px-20 lg:py-25"
+        id="how"
+      >
         <div className="mx-auto max-w-[860px] text-center">
           <p className={lightLabelClass}>How it works</p>
-          <h2 className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}>
+          <h2
+            className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}
+          >
             Move from brief to payout without payment chaos.
           </h2>
           <p className="mx-auto max-w-[620px] text-base leading-relaxed text-[var(--muted-dark)]">
@@ -230,7 +238,9 @@ export default function Home() {
               </h3>
               <p
                 className={`text-[15px] leading-relaxed ${
-                  index === 0 ? "text-[rgba(247,248,242,0.72)]" : "text-[var(--muted-dark)]"
+                  index === 0
+                    ? "text-[rgba(247,248,242,0.72)]"
+                    : "text-[var(--muted-dark)]"
                 }`}
               >
                 {item.text}
@@ -240,10 +250,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid gap-14 bg-[radial-gradient(circle_at_78%_10%,rgba(216,255,40,0.14),transparent_28%),linear-gradient(180deg,#06171d,#0c262a)] px-4 py-24 text-[var(--paper)] sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,1.1fr)] lg:px-20 lg:py-29" id="why">
+      <section
+        className="grid gap-14 bg-[radial-gradient(circle_at_78%_10%,rgba(216,255,40,0.14),transparent_28%),linear-gradient(180deg,#06171d,#0c262a)] px-4 py-24 text-[var(--paper)] sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,1.1fr)] lg:px-20 lg:py-29"
+        id="why"
+      >
         <div className="max-w-[610px]">
           <p className={labelClass}>Why AdsBazaar</p>
-          <h2 className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}>
+          <h2
+            className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}
+          >
             Built like payment infrastructure, not a campaign spreadsheet.
           </h2>
           <p className="text-base leading-relaxed text-[rgba(247,248,242,0.72)]">
@@ -270,10 +285,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[var(--paper)] px-4 py-20 text-[var(--ink)] sm:px-8 lg:px-20 lg:py-25" id="rails">
+      <section
+        className="bg-[var(--paper)] px-4 py-20 text-[var(--ink)] sm:px-8 lg:px-20 lg:py-25"
+        id="rails"
+      >
         <div className="mx-auto max-w-[860px] text-center">
           <p className={lightLabelClass}>Payment rails</p>
-          <h2 className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}>
+          <h2
+            className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}
+          >
             Stablecoin-native, local-market aware.
           </h2>
         </div>
@@ -294,18 +314,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative min-h-[620px] bg-[radial-gradient(circle_at_50%_0%,rgba(216,255,40,0.16),transparent_34%),linear-gradient(180deg,#0b2024,#06171d)] px-4 py-24 sm:px-8 lg:px-20 lg:py-28" id="build">
+      <section
+        className="relative min-h-[620px] bg-[radial-gradient(circle_at_50%_0%,rgba(216,255,40,0.16),transparent_34%),linear-gradient(180deg,#0b2024,#06171d)] px-4 py-24 sm:px-8 lg:px-20 lg:py-28"
+        id="build"
+      >
         <div className={gridOverlayClass} aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-[860px] rounded-3xl border border-white/10 bg-white/[0.06] px-8 py-10 text-center sm:p-14 lg:p-[72px]">
           <p className={labelClass}>Open-source Stellar dApp</p>
-          <h2 className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}>
+          <h2
+            className={`${displayFont} mb-4 text-[46px] leading-none lg:text-[76px]`}
+          >
             Launch campaigns where creators already live.
           </h2>
           <p className="mx-auto mb-8 max-w-[620px] text-[17px] leading-relaxed text-[rgba(247,248,242,0.72)]">
             AdsBazaar is being built as an open-source reference for creator
             commerce, Soroban escrow, and cross-border stablecoin settlement.
           </p>
-          <StellarWalletButton size="large" />
+          <OnboardingFlow buttonLabel="Get started" buttonSize="large" />
         </div>
       </section>
     </main>

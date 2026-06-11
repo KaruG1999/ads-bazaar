@@ -9,13 +9,15 @@ import {
   requestAccess,
 } from "@stellar/freighter-api";
 
-type WalletState = {
+export type WalletState = {
   address: string;
   network: string;
 };
 
 type StellarWalletButtonProps = {
   className?: string;
+  label?: string;
+  onConnected?: (wallet: WalletState) => void;
   size?: "default" | "large";
 };
 
@@ -40,10 +42,12 @@ const getErrorMessage = (error: unknown) => {
 
 export function StellarWalletButton({
   className = "",
+  label = "Connect wallet",
+  onConnected,
   size = "default",
 }: StellarWalletButtonProps) {
   const [wallet, setWallet] = useState<WalletState | null>(null);
-  const [status, setStatus] = useState("Connect wallet");
+  const [status, setStatus] = useState(label);
   const [errorMessage, setErrorMessage] = useState("");
   const [isPending, setIsPending] = useState(false);
   const sizeClass = size === "large" ? largeClass : "";
@@ -107,14 +111,17 @@ export function StellarWalletButton({
 
       const network = await getNetworkDetails();
 
-      setWallet({
+      const connectedWallet = {
         address: access.address,
         network: network.error ? "Stellar" : network.network,
-      });
+      };
+
+      setWallet(connectedWallet);
       setStatus("Wallet connected");
+      onConnected?.(connectedWallet);
     } catch (error) {
       setWallet(null);
-      setStatus("Connect wallet");
+      setStatus(label);
       setErrorMessage(getErrorMessage(error));
     } finally {
       setIsPending(false);
@@ -123,7 +130,7 @@ export function StellarWalletButton({
 
   const clearWallet = () => {
     setWallet(null);
-    setStatus("Connect wallet");
+    setStatus(label);
     setErrorMessage("");
   };
 
@@ -133,8 +140,8 @@ export function StellarWalletButton({
         <button
           type="button"
           className={`${walletChipClass} ${sizeClass}`.trim()}
-          onClick={clearWallet}
-          aria-label="Clear connected wallet"
+          onClick={() => (onConnected ? onConnected(wallet) : clearWallet())}
+          aria-label={onConnected ? "Continue with connected wallet" : "Clear connected wallet"}
         >
           <span className="text-[10px] font-black uppercase leading-none text-[rgba(7,17,22,0.58)]">
             {wallet.network}
