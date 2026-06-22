@@ -278,7 +278,7 @@ export function CampaignWizardModal() {
           <div className="mx-auto max-w-[600px] px-5 py-8">
             {hydrated ? (
               <>
-                <WizardStepIndicator steps={STEPS} currentStep={state.currentStep} />
+                <WizardStepIndicator steps={STEPS} currentStep={state.currentStep} onStepClick={goToStep} />
 
                 {state.currentStep === 1 && (
                   <StepCampaignBrief
