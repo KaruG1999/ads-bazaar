@@ -1,17 +1,20 @@
 import { DashboardHeader } from "@/components/dashboard/business/dashboard-header";
+import { ProfileSection } from "@/components/dashboard/shared/profile-section";
+import { WalletSettingsSection } from "@/components/dashboard/shared/wallet-settings-section";
+import { NotificationPreferences } from "@/components/dashboard/shared/notification-preferences";
+import { DangerZoneSection } from "@/components/dashboard/shared/danger-zone-section";
+import { businessProfile } from "@/components/dashboard/shared/settings-data";
 
 export default function BusinessSettingsPage() {
   return (
     <>
       <DashboardHeader eyebrow="Account preferences" title="Settings" />
 
-      <div className="flex flex-col items-center justify-center gap-2 border border-[var(--dash-border)] bg-[var(--dash-surface)] px-6 py-20 text-center">
-        <p className="text-sm font-medium text-[var(--dash-heading)]">
-          This page is under construction.
-        </p>
-        <p className="max-w-md text-sm text-[var(--dash-muted)]">
-          Business profile, billing, and notification settings coming soon.
-        </p>
+      <div className="flex flex-col gap-8">
+        <ProfileSection profile={businessProfile} />
+        <WalletSettingsSection />
+        <NotificationPreferences role="business" />
+        <DangerZoneSection />
       </div>
     </>
   );

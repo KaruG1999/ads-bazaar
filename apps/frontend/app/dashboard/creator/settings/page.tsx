@@ -1,17 +1,20 @@
 import { DashboardHeader } from "@/components/dashboard/creator/dashboard-header";
+import { ProfileSection } from "@/components/dashboard/shared/profile-section";
+import { WalletSettingsSection } from "@/components/dashboard/shared/wallet-settings-section";
+import { NotificationPreferences } from "@/components/dashboard/shared/notification-preferences";
+import { DangerZoneSection } from "@/components/dashboard/shared/danger-zone-section";
+import { creatorProfile } from "@/components/dashboard/shared/settings-data";
 
 export default function CreatorSettingsPage() {
   return (
     <>
       <DashboardHeader eyebrow="Account preferences" title="Settings" />
 
-      <div className="flex flex-col items-center justify-center gap-2 border border-[var(--dash-border)] bg-[var(--dash-surface)] px-6 py-20 text-center">
-        <p className="text-sm font-medium text-[var(--dash-heading)]">
-          This page is under construction.
-        </p>
-        <p className="max-w-md text-sm text-[var(--dash-muted)]">
-          Profile settings and notification preferences coming soon.
-        </p>
+      <div className="flex flex-col gap-8">
+        <ProfileSection profile={creatorProfile} />
+        <WalletSettingsSection />
+        <NotificationPreferences role="creator" />
+        <DangerZoneSection />
       </div>
     </>
   );
