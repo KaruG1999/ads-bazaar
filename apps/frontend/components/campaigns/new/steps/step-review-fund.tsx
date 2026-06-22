@@ -1,6 +1,7 @@
 "use client";
 
 import { Globe, Users, LayoutGrid, CheckCircle2 } from "lucide-react";
+import { useWallet } from "@/components/wallet/wallet-context";
 
 interface WizardState {
   brief: {
@@ -39,7 +40,12 @@ interface StepReviewFundProps {
 }
 
 export function StepReviewFund({ data, onGoToStep }: StepReviewFundProps) {
+  const { wallet } = useWallet();
   const { brief, targeting, budget, proof } = data;
+
+  const walletDisplay = wallet
+    ? `${wallet.address.slice(0, 4)}...${wallet.address.slice(-4)}`
+    : "No wallet connected";
 
   const creatorPool = budget.totalBudget;
   const platformFee = budget.totalBudget * 0.005;
@@ -229,7 +235,7 @@ export function StepReviewFund({ data, onGoToStep }: StepReviewFundProps) {
         </div>
 
         <div className="mt-5 flex items-center justify-between border-t border-[rgba(255,255,255,0.08)] pt-4">
-          <span className="font-mono text-[13px] text-[rgba(255,255,255,0.35)]">GC4C...7R4A</span>
+          <span className="font-mono text-[13px] text-[rgba(255,255,255,0.35)]">{walletDisplay}</span>
           <span className="text-[12px] text-[rgba(255,255,255,0.35)]">Stellar Mainnet</span>
         </div>
       </div>
